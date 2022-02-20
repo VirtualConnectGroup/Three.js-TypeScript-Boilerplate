@@ -12,14 +12,28 @@ document.body.appendChild(renderer.domElement)
 
 const controls = new OrbitControls(camera, renderer.domElement)
 
-const geometry = new THREE.BoxGeometry()
-const material = new THREE.MeshBasicMaterial({
-    color: 0x00ff00,
-    wireframe: true,
-})
+/**** Custom Code */
 
-const cube = new THREE.Mesh(geometry, material)
-scene.add(cube)
+let texturesList = 0;
+let totalResponses = 0;
+let responseIndex = 0;
+
+let loader = new THREE.TextureLoader();
+
+let texture = new THREE.TextureLoader().load('https://augmentyourworldimages.s3.amazonaws.com/LoveCoupons-G/7GHV-Valentines_Coupons_6.png')
+
+//let randIndex = THREE.Math.randInt(0, texturesList.length - 1);
+//let randTexture = loader.load(texturesList[randIndex]);
+let circleGeometry = new THREE.CircleGeometry(1, 100);
+let meshMaterial = new THREE.MeshBasicMaterial({
+  map: texture,
+  transparent: true,
+  opacity: 1,
+});
+let circle = new THREE.Mesh(circleGeometry, meshMaterial);
+
+scene.add(circle);
+
 
 window.addEventListener('resize', onWindowResize, false)
 function onWindowResize() {
@@ -32,8 +46,7 @@ function onWindowResize() {
 function animate() {
     requestAnimationFrame(animate)
 
-    cube.rotation.x += 0.01
-    cube.rotation.y += 0.01
+
 
     controls.update()
 
