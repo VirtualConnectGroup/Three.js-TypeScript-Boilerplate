@@ -14,16 +14,23 @@ const controls = new OrbitControls(camera, renderer.domElement)
 
 /**** Custom Code */
 
-let texturesList = 0;
+
 let totalResponses = 0;
 let responseIndex = 0;
+
+const texturesList = [
+    "https://augmentyourworldimages.s3.amazonaws.com/LoveCoupons-G/7GHV-Valentines_Coupons_6.png",
+    "https://augmentyourworldimages.s3.amazonaws.com/LoveCoupons-G/7GHV-Valentines_Coupons_7.png",
+    "https://augmentyourworldimages.s3.amazonaws.com/LoveCoupons-G/7GHV-Valentines_Coupons_8.png",
+  ];
 
 let loader = new THREE.TextureLoader();
 
 let texture = new THREE.TextureLoader().load('https://augmentyourworldimages.s3.amazonaws.com/LoveCoupons-G/7GHV-Valentines_Coupons_6.png')
 
-//let randIndex = THREE.Math.randInt(0, texturesList.length - 1);
-//let randTexture = loader.load(texturesList[randIndex]);
+
+let randIndex = THREE.MathUtils.randInt(0,texturesList.length -1);
+let randTexture = loader.load(texturesList[randIndex]);
 let circleGeometry = new THREE.CircleGeometry(1, 100);
 let meshMaterial = new THREE.MeshBasicMaterial({
   map: texture,
