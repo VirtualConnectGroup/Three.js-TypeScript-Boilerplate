@@ -1,4 +1,5 @@
 import * as THREE from 'three'
+import { Material } from 'three'
 
 
 const scene = new THREE.Scene()
@@ -94,10 +95,18 @@ function raycasterEvent(event:MouseEvent) {
 
   
   const rotateCards = function () {
+    
+     let updateLoader = new THREE.TextureLoader(); 
+     setInterval(function(){
+     for (var i=0; i<50; i++) {
+      console.log(i);
+    
+      
+    let randIndex = THREE.MathUtils.randInt(1,texturesList.length -1);
+    //console.log(randIndex);
+    meshMaterial.needsUpdate = true;
 
-    let randIndex = THREE.MathUtils.randInt(0,texturesList.length -1);
-    console.log(randIndex);
-    loader.load(texturesList[randIndex], function (tex) {
+    updateLoader.load(texturesList[randIndex], function (tex) {
       // Once the texture has loaded
       // Asign it to the material
       meshMaterial.map = tex;
@@ -107,22 +116,29 @@ function raycasterEvent(event:MouseEvent) {
       // if(textureToShow > texturesList.length-1) {
       //  textureToShow = 0;
       // }
+
     });
   };
+  }, 100);
 
+}
 
-// var inter = setInterval(rotateCards, 100);
-
-// const startLoop = function() {
-//   if (count < 50) {
-//     count += 1;
-    
-//       console.log(count, "loops in 5 seconds");
-//       rotateCards();
-//     } else {
-//         setInterval(clearInterval(inter), 0);
-//       }
-//     }
+  // let startLoop = 0;  
+  // var count = 0;
+  // var inter = setInterval(startLoop, 100);
+  
+  // let startLoop = function() {
+  //   if (count < 50) {
+  //     count += 1;
+      
+  //       console.log(count, "loops in 5 seconds");
+  //       rotateCards();
+      
+  //   // } else {
+  //   //   setInterval(clearInterval(inter), 0);
+  //   // }
+  //   }
+  // }
 
 window.addEventListener('resize', onWindowResize, false)
 function onWindowResize() {
