@@ -19,9 +19,21 @@ let totalResponses = 0;
 let responseIndex = 0;
 
 const texturesList = [
+    "https://augmentyourworldimages.s3.amazonaws.com/LoveCoupons-G/7GHV-Valentines_Coupons_2.png",
+    "https://augmentyourworldimages.s3.amazonaws.com/LoveCoupons-G/7GHV-Valentines_Coupons_3.png",
+    "https://augmentyourworldimages.s3.amazonaws.com/LoveCoupons-G/7GHV-Valentines_Coupons_4.png",
+    "https://augmentyourworldimages.s3.amazonaws.com/LoveCoupons-G/7GHV-Valentines_Coupons_5.png",
     "https://augmentyourworldimages.s3.amazonaws.com/LoveCoupons-G/7GHV-Valentines_Coupons_6.png",
     "https://augmentyourworldimages.s3.amazonaws.com/LoveCoupons-G/7GHV-Valentines_Coupons_7.png",
     "https://augmentyourworldimages.s3.amazonaws.com/LoveCoupons-G/7GHV-Valentines_Coupons_8.png",
+    "https://augmentyourworldimages.s3.amazonaws.com/LoveCoupons-G/7GHV-Valentines_Coupons_9.png",
+    "https://augmentyourworldimages.s3.amazonaws.com/LoveCoupons-G/7GHV-Valentines_Coupons_10.png",
+    "https://augmentyourworldimages.s3.amazonaws.com/LoveCoupons-G/7GHV-Valentines_Coupons_11.png",
+    "https://augmentyourworldimages.s3.amazonaws.com/LoveCoupons-G/7GHV-Valentines_Coupons_12.png",
+    "https://augmentyourworldimages.s3.amazonaws.com/LoveCoupons-G/7GHV-Valentines_Coupons_13.png",
+    "https://augmentyourworldimages.s3.amazonaws.com/LoveCoupons-G/7GHV-Valentines_Coupons_14.png",
+    "https://augmentyourworldimages.s3.amazonaws.com/LoveCoupons-G/7GHV-Valentines_Coupons_15.png",
+    "https://augmentyourworldimages.s3.amazonaws.com/LoveCoupons-G/7GHV-Valentines_Coupons_16.png",
   ];
 
 let loader = new THREE.TextureLoader();
@@ -75,7 +87,7 @@ function raycasterEvent(event:MouseEvent) {
     const intersects = raycaster.intersectObjects( raycasterGroup.children );
     for ( let i = 0; i < intersects.length; i ++ ) {
        console.log("intersecting"); 
-       startLoop();
+       rotateCards();
     }
     
   }
@@ -84,6 +96,7 @@ function raycasterEvent(event:MouseEvent) {
   const rotateCards = function () {
 
     let randIndex = THREE.MathUtils.randInt(0,texturesList.length -1);
+    console.log(randIndex);
     loader.load(texturesList[randIndex], function (tex) {
       // Once the texture has loaded
       // Asign it to the material
@@ -98,18 +111,18 @@ function raycasterEvent(event:MouseEvent) {
   };
 
 
-var inter = setInterval(rotateCards, 100);
+// var inter = setInterval(rotateCards, 100);
 
-const startLoop = function() {
-  if (count < 50) {
-    count += 1;
+// const startLoop = function() {
+//   if (count < 50) {
+//     count += 1;
     
-      console.log(count, "loops in 5 seconds");
-      rotateCards();
-    } else {
-        setInterval(clearInterval(inter), 0);
-      }
-    }
+//       console.log(count, "loops in 5 seconds");
+//       rotateCards();
+//     } else {
+//         setInterval(clearInterval(inter), 0);
+//       }
+//     }
 
 window.addEventListener('resize', onWindowResize, false)
 function onWindowResize() {
