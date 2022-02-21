@@ -95,11 +95,15 @@ function raycasterEvent(event:MouseEvent) {
 
   
   const rotateCards = function () {
-    
+   
+     var count = 0;
      let updateLoader = new THREE.TextureLoader(); 
      setInterval(function(){
-     for (var i=0; i<50; i++) {
-      console.log(i);
+        if (count < 50) {
+        count += 1;
+     
+ 
+      console.log(count);
     
       
     let randIndex = THREE.MathUtils.randInt(1,texturesList.length -1);
